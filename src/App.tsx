@@ -1,10 +1,18 @@
-import Home from "./pages/home";
+import Header from "./components/header";
+import { BrowserRouter } from "react-router-dom";
+import RouterComponent from "./pages/router";
+import { Provider } from 'react-redux'
+import { store } from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <RouterComponent />
+      </BrowserRouter>
+    </Provider>
+
   );
 }
 
