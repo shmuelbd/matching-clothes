@@ -8,8 +8,8 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Header />
         <RouterComponent />
+        <Header />
       </BrowserRouter>
     </Provider>
 
