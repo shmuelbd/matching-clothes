@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
 import HomeIcon from '@mui/icons-material/Home';
-import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 
@@ -34,21 +33,13 @@ const Header = (props: Props) => {
             <NavLink to="/clothing-store"
                 style={Style}
             >
-
-                <StoreMallDirectoryIcon />
+                <CheckroomIcon />
             </NavLink >
 
             <NavLink to="/saved-selection"
                 style={Style}
             >
-
                 <LocalMallIcon />
-            </NavLink >
-            <NavLink to="/collection-composition"
-                style={Style}
-            >
-
-                <CheckroomIcon />
             </NavLink >
 
         </Container>

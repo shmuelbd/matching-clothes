@@ -5,7 +5,7 @@ import BoxChoice from './box-choices';
 type Props = {}
 
 const Container = styled.div`
-padding-top: 20px;
+padding-top: 250px;
 height: calc(100% - 50px);
 width: 100%;
 background-color: #e9e9e9;
@@ -21,7 +21,6 @@ const Home = (props: Props) => {
         <Container>
             <BoxChoice />
             <P>פריטי לבוש זמינים לבחירה</P>
-
             <AvailableClothes />
         </Container>
     )
