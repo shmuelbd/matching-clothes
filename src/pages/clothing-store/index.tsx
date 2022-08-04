@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchClothes } from '../../redux/slices/clothes';
+import { useAppSelector } from '../../redux/hooks';
 import Clothing from './clothing-store';
 import Filter from './filter';
+import Steps from './steps';
 
 const Container = styled.div`
 height: calc(100% - 50px);
@@ -23,20 +23,28 @@ export type ItemType = {
 }
 
 const ClothingStore = (props: Props) => {
-    const dispatch = useAppDispatch()
     const clothes = useAppSelector((state) => state.clothes.data)
-    const [filterByInput, setFilterByInput] = useState("shirt")
-    const filterClothes = clothes.filter((item: ItemType) => item.type === filterByInput)
-    const types = ["shoes", "shirt", "pants"]
+    const choice = useAppSelector((state) => state.userServices.choice)
+    const step = useAppSelector((state) => state.userServices.step)
+    const [filterClothes, setfilterClothes] = useState<ItemType[]>(clothes.filter((item: ItemType) => item.type === choice))
+
+    let types = ["shoes", "shirt", "pants"]
+    if (choice === "shirt")
+        types = ["shirt", "shoes", "pants"]
+
+    if (choice === "pants")
+        types = ["pants", "shirt", "shoes"]
 
     useEffect(() => {
-        dispatch(fetchClothes())
-    }, [])
+        setfilterClothes(clothes.filter((item: ItemType) => item.type === types[step]))
+    }, [step])
+
 
     return (
         <Container>
             <Filter />
             <Clothing filterClothes={filterClothes} />
+            <Steps />
         </Container>
     )
 }

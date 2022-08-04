@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchClothes } from '../../redux/slices/clothes';
 import AvailableClothes from './available-clothes';
 import BoxChoice from './box-choices';
 
@@ -17,6 +20,14 @@ font-size: 5vw;
 margin-bottom: 20px;
 `;
 const Home = (props: Props) => {
+    const dispatch = useAppDispatch()
+    const clothes = useAppSelector((state) => state.clothes.data)
+
+    useEffect(() => {
+        if (clothes.length < 1)
+            dispatch(fetchClothes())
+    }, [])
+
     return (
         <Container>
             <BoxChoice />

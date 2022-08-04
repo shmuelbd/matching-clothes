@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 
 const Container = styled.div`
 display: flex;
@@ -11,7 +12,9 @@ type Props = {}
 
 const Filter = (props: Props) => {
     return (
-        <Container>Filter</Container>
+        <Container>
+            <FilterAltOutlinedIcon />
+        </Container>
     )
 }
 

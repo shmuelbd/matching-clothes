@@ -20,11 +20,12 @@ margin: 20px;
 type Props = {}
 
 const AvailableClothes = (props: Props) => {
+
     return (
         <Container>
-            <Box components={<AirlineSeatLegroomExtraOutlinedIcon />} name="מכנסיים" color='#a0e3ec' />
-            <Box components={<SelfImprovementOutlinedIcon />} name="חולצות" color='#f7d7b9' />
-            <Box components={<SnowshoeingOutlinedIcon />} name="נעליים" color='#dcbce4' />
+            <Box components={<AirlineSeatLegroomExtraOutlinedIcon />} name="מכנסיים" color='#a0e3ec' type='pants' />
+            <Box components={<SelfImprovementOutlinedIcon />} name="חולצות" color='#f7d7b9' type='shirt' />
+            <Box components={<SnowshoeingOutlinedIcon />} name="נעליים" color='#dcbce4' type='shoes' />
 
         </Container>
     )
