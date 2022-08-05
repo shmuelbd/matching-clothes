@@ -34,7 +34,23 @@ const ClothingStore = (props: Props) => {
     const tempSaves = useAppSelector((state) => state.userServices.tempsaves)
     const [filterClothes, setfilterClothes] = useState<ItemType[]>(clothes.filter((item: ItemType) => item.type === choice))
     const [time, setTime] = useState<any>(new Date())
-    // console.log(clothes);
+    const saves = useAppSelector((state) => state.userServices.savedSelection)
+
+
+    const filterSavesitems = () => {
+        let allsavesitems: any = []
+        const arr = saves.map((item: any, index: number) => {
+            let arr = allsavesitems.concat(item.items)
+            allsavesitems = arr
+        })
+        return allsavesitems
+    }
+
+
+
+
+
+
 
     useEffect(() => {
         setfilterClothes(clothes.filter((item: ItemType) => item.type === choice))
@@ -50,8 +66,19 @@ const ClothingStore = (props: Props) => {
     if (choice === "pants")
         types = ["pants", "shirt", "shoes"]
 
+
+
     useEffect(() => {
-        setfilterClothes(clothes.filter((item: ItemType) => item.type === types[step]))
+
+        setfilterClothes(clothes.filter((item: ItemType) => {
+            if (filterSavesitems().includes(item.id)) {
+                return false
+            }
+            if (item.type === types[step])
+                return true
+            // item.type === types[step]
+
+        }))
         if (step === 3) {
             navigate("/saved-selection")
             dispatch(changeSteps(0))

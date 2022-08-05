@@ -43,6 +43,7 @@ const Box = (props: Props) => {
     let navigate = useNavigate();
     const dispatch = useAppDispatch()
     const clothes = useAppSelector((state) => state.clothes.data)
+    const saves = useAppSelector((state) => state.userServices.savedSelection)
 
     const goToStore = () => {
         dispatch(setChoice(props.type
@@ -51,8 +52,26 @@ const Box = (props: Props) => {
         navigate("/clothing-store")
     }
 
-    const counter = clothes.filter((item: any) => item.type === props.type)
 
+
+    const filterSavesitems = () => {
+        let allsavesitems: any = []
+        const arr = saves.map((item: any, index: number) => {
+            let arr = allsavesitems.concat(item.items)
+            allsavesitems = arr
+        })
+        return allsavesitems
+    }
+
+
+    const counter = clothes.filter((item: any) => {
+        if (filterSavesitems().includes(item.id)) {
+            return false
+        }
+        if (item.type === props.type)
+            return true
+
+    })
     return (
 
         <Container color={props.color}

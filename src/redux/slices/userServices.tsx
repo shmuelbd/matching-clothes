@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { stat } from 'fs'
 
 type saveCollectionType = {
     items: Number[],
@@ -36,10 +37,14 @@ export const userSlice = createSlice({
         setTime: (state: any, action: PayloadAction<any>) => {
             state.time = action.payload
         },
+        deleteItem: (state: any, action: PayloadAction<any>) => {
+            state.savedSelection.splice(action.payload, 1);
+
+        },
     },
 })
 
-export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves } = userSlice.actions
+export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves, deleteItem } = userSlice.actions
 
 export default userSlice.reducer
 

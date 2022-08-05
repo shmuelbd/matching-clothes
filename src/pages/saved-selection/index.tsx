@@ -16,7 +16,6 @@ type Props = {}
 
 const SavedSelection = (props: Props) => {
     const saves = useAppSelector((state) => state.userServices.savedSelection)
-    console.log("saves: ", saves);
 
     return (
         <Container>

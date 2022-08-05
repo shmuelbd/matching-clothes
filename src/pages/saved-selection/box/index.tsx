@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteItem } from '../../../redux/slices/userServices';
 
 const Container = styled.div`
 display: flex;
@@ -66,7 +67,8 @@ type Props = { item: any, index: number }
 const Box = (props: Props) => {
     const clothes = useAppSelector((state) => state.clothes.data)
     const itemDetails: any = clothes.filter((item: any) => props.item.items.includes(item.id))
-    console.log("itemDetails: ", itemDetails);
+    const dispatch = useAppDispatch()
+
 
     return (
         <Container>
@@ -78,7 +80,7 @@ const Box = (props: Props) => {
                 ))
             }
             <BoxButton>
-                <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error">
+                <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => dispatch(deleteItem(props.index))}>
                     מחיקה
                 </Button>
             </BoxButton>
