@@ -14,7 +14,6 @@ overflow-y: scroll;
 
 type Props = {
     filterClothes: any
-
 }
 type ItemType = {
     brand: string
@@ -24,13 +23,14 @@ type ItemType = {
     type: string
 }
 
+
 const Clothing = (props: Props) => {
 
     return (
         <Container>
             {
                 props.filterClothes.map((item: ItemType, index: number) => (
-                    <Box brand={item.brand} color={item.color} size={item.size} type={item.type} key={index} />
+                    <Box brand={item.brand} color={item.color} size={item.size} type={item.type} id={item.id} key={index} />
                 ))
             }
         </Container>

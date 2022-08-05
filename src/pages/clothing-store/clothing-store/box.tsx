@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import { useMemo, useState } from 'react';
-import { changeSteps } from '../../../redux/slices/userServices';
+import { changeSteps, saveColletion, setTempSaves } from '../../../redux/slices/userServices';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 const Container = styled.div`
@@ -46,6 +45,7 @@ type Props = {
     color: string
     size: string
     type: string
+    id: number
 }
 
 
@@ -68,9 +68,14 @@ const Box = (props: Props) => {
         default:
     }
 
+    const nextStep = () => {
+        dispatch(changeSteps(step + 1))
+        dispatch(setTempSaves(props.id))
+    }
+
     return (
         <Container>
-            <Button onClick={() => dispatch(changeSteps(step + 1))}>
+            <Button onClick={() => nextStep()}>
                 <AddOutlinedIcon />
             </Button>
             <TextBox>
