@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from '../../../redux/hooks';
 
 const Container = styled.div`
 display: flex;
@@ -52,16 +53,17 @@ type Props = {}
 
 const BoxChoice = (props: Props) => {
     let navigate = useNavigate();
+    const saves = useAppSelector((state) => state.userServices.savedSelection)
 
     return (
         <Container onClick={() => navigate("/saved-selection")}>
             <Counter>
-                3
+                {saves.length}
             </Counter>
             <BoxText>
                 <TopText>סטים שמורים במערכת</TopText>
                 <MidText>סגנונות לבוש שבחרת השמורים במערכת</MidText>
-                <BottomText>לצפייה ועריכה לחץ כאן</BottomText>
+                <BottomText>לצפייה לחץ כאן</BottomText>
             </BoxText>
         </Container>
     )
