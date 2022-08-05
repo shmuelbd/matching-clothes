@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useAppSelector } from '../../../redux/hooks';
-
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Container = styled.div`
 display: flex;
@@ -8,15 +9,53 @@ flex-wrap: wrap;
 align-items: center;
 width: 100%;
 background-color: #ffffff;
-margin: 4px;
 font-size: 4vw;
-
+justify-content: space-evenly;
+margin: 20px 0px;
+border-radius: 12px;
+border: 3px solid #d1d1d1;
+`;
+const ContainerSubBox = styled.div`
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+width: 100%;
+background-color: #ffffff;
+font-size: 4vw;
+justify-content: space-evenly;
+border-radius: 12px;
+/* border: 1px solid #d1d1d1; */
+`;
+const BoxButton = styled.div`
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+width: 100%;
+justify-content: center;
+padding: 20px;
 `;
 const Title = styled.div`
 font-weight: 600;
 width: 100%;
+text-align: center;
+font-size: 5vw;
+padding: 5px;
+margin-bottom: 20px;
+background-color: #d1d1d1;
+border-radius: 7px 7px 0 0 ;
+
+`;
+const P = styled.p`
+font-weight: 600;
+width: 100%;
+text-align: center;
+font-size: 4vw;
+padding: 5px;
+background-color: #e9e9e9;
+
 `;
 const SubTitle = styled.p`
+color: #f3b36a;
 padding:0 6px;
 font-weight: 600;
 font-size: 4vw;
@@ -38,8 +77,13 @@ const Box = (props: Props) => {
                     <Item item={item} key={index} />
                 ))
             }
+            <BoxButton>
+                <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error">
+                    מחיקה
+                </Button>
+            </BoxButton>
 
-        </Container>
+        </Container >
     )
 }
 export default Box
@@ -60,13 +104,13 @@ const translate = (item: string) => {
 
 const Item = (props: PropsItem) => {
     return (
-        <Container>
-            <h4>{translate(props.item.type)}</h4>{" "}
+        <ContainerSubBox>
+            <P>{translate(props.item.type)}</P>{" "}
             <SubTitle>{"מותג: "}</SubTitle>  {props.item.brand}
             <SubTitle>{"מידה: "}</SubTitle>{props.item.size}
             <SubTitle>{"צבע: "}</SubTitle>{props.item.color}
 
 
-        </Container>
+        </ContainerSubBox>
     )
 }
