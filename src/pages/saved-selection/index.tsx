@@ -5,7 +5,6 @@ import Box from './box';
 
 
 const Container = styled.div`
-padding-top: 250px;
 height: calc(100% - 50px);
 width: 100%;
 background-color: #e9e9e9;
@@ -15,13 +14,13 @@ type Props = {}
 
 const SavedSelection = (props: Props) => {
     const saves = useAppSelector((state) => state.userServices.savedSelection)
-    console.log(saves);
+    console.log("saves: ", saves);
 
     return (
         <Container>
             {
                 saves.map((item: number, index: number) => (
-                    <Box id={item} key={index} />
+                    <Box item={item} key={index} index={index} />
                 ))
             }
 
