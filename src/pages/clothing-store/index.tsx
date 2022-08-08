@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Clothing from './clothing-store';
@@ -6,6 +6,9 @@ import Filter from './filter';
 import Steps from './steps';
 import { useNavigate } from "react-router-dom";
 import { changeSteps, resetTempSaves, saveColletion, setChoice, setSize, setTempSaves } from '../../redux/slices/userServices';
+import setSizes from '../../utilities/AlgorithmRecommendations';
+import types from '../../utilities/typesCategory';
+import concatSavesItems from '../../utilities/concatSavesItems';
 
 const Container = styled.div`
 height: calc(100% - 50px);
@@ -35,71 +38,13 @@ const ClothingStore = (props: Props) => {
     const saves = useAppSelector((state) => state.userServices.savedSelection)
     const Usersize = useAppSelector((state) => state.userServices.size)
     const [recommended, setRecommended] = useState<any>([])
+    const filter = useAppSelector((state) => state.userServices.filter)
 
-    const filterSavesitems = () => {
-        let allsavesitems: any = []
-        const arr = saves.map((item: any, index: number) => {
-            let arr = allsavesitems.concat(item.items)
-            allsavesitems = arr
-        })
-        return allsavesitems
-    }
-
-    //set sizes for user
-    let types = ["shoes", "shirt", "pants"]
-    const setSizes = (item: any) => {
-        let size = ""
-        if (item.type === "shoes") {
-            if (item.size < 40)
-                return size = "S"
-            if (item.size < 43)
-                return size = "M"
-            if (item.size < 44)
-                return size = "L"
-        }
-        if (item.type === "shirt") {
-            if (item.size === "S")
-                return size = "S"
-            if (item.size === "M")
-                return size = "M"
-            if (item.size === "L")
-                return size = "L"
-            if (item.size === "XL")
-                return size = "L"
-            if (item.size === "XXL")
-                return size = "L"
-        }
-        if (item.type === "pants") {
-            if (item.size < 39)
-                return size = "S"
-            if (item.size < 42)
-                return size = "M"
-            if (item.size > 42)
-                return size = "L"
-        }
-        return size
-    }
-
-
-
-
+    console.log(filter);
 
     useEffect(() => {
         setfilterClothes(clothes.filter((item: ItemType) => item.type === choice))
     }, [clothes])
-
-
-
-    if (choice === "shirt")
-        types = ["shirt", "shoes", "pants"]
-
-    if (choice === "pants")
-        types = ["pants", "shirt", "shoes"]
-
-    // useMemo(() => {
-    //      console.log(Usersize) 
-
-    //     }, [Usersize])
 
     useEffect(() => {
 
@@ -109,13 +54,12 @@ const ClothingStore = (props: Props) => {
         }
 
         setfilterClothes(clothes.filter((item: ItemType) => {
-            if (filterSavesitems().includes(item.id)) {
+            if (concatSavesItems(saves).includes(item.id)) {
                 return false
             }
-            if (item.type === types[step])
+            if (item.type === types(choice)[step])
                 return true
         }))
-
 
         if (step === 3) {
             navigate("/saved-selection")
@@ -139,7 +83,7 @@ const ClothingStore = (props: Props) => {
             setRecommended(filterClothes.filter((item: ItemType) => {
                 let sizeTemp: any = Usersize
 
-                if (setSizes({ type: types[step], size: item.size }) === sizeTemp.size)
+                if (setSizes({ type: types(choice)[step], size: item.size }) === sizeTemp.size)
                     return true
             }))
         }
@@ -149,8 +93,8 @@ const ClothingStore = (props: Props) => {
 
     return (
         <Container>
-            <Filter />
-            <Clothing filterClothes={filterClothes} recommended={recommended} />
+            <Filter setfilterClothes={setfilterClothes} filterClothes={filterClothes} />
+            <Clothing filterClothes={filter.length > 0 ? filter : filterClothes} recommended={recommended} />
             <Steps />
         </Container>
     )

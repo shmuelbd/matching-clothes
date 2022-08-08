@@ -15,7 +15,8 @@ export const userSlice = createSlice({
         step: 0,
         time: "",
         tempsaves: [],
-        size: null
+        size: null,
+        filter: []
     },
     reducers: {
         setChoice: (state: any, action: PayloadAction<any>) => {
@@ -46,10 +47,14 @@ export const userSlice = createSlice({
             state.size = action.payload;
 
         },
+        setFilter: (state: any, action: PayloadAction<any>) => {
+            state.filter = action.payload;
+
+        },
     },
 })
 
-export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves, deleteItem, setSize } = userSlice.actions
+export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves, deleteItem, setSize, setFilter } = userSlice.actions
 
 export default userSlice.reducer
 

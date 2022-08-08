@@ -6,6 +6,7 @@ const Container = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
+align-content: flex-start;
 height: calc(100% - 120px);
 width: 100%;
 background-color: #e9e9e9;
