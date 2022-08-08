@@ -44,7 +44,7 @@ const Header = (props: Props) => {
 
     return (
         <Container>
-            <NavLink to="/"
+            <NavLink to="/matching-clothes"
                 style={Style}
             >
                 <HomeIcon />
