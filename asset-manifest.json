@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/matching-clothes/static/css/main.44df2798.css",
+    "main.js": "/matching-clothes/static/js/main.ed1d0d97.js",
+    "index.html": "/matching-clothes/index.html",
+    "main.44df2798.css.map": "/matching-clothes/static/css/main.44df2798.css.map",
+    "main.ed1d0d97.js.map": "/matching-clothes/static/js/main.ed1d0d97.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44df2798.css",
+    "static/js/main.ed1d0d97.js"
+  ]
+}
