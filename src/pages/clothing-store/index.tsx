@@ -9,6 +9,7 @@ import { changeSteps, resetTempSaves, saveColletion, setChoice, setSize, setTemp
 import setSizes from '../../utilities/AlgorithmRecommendations';
 import types from '../../utilities/typesCategory';
 import concatSavesItems from '../../utilities/concatSavesItems';
+import { json } from 'node:stream/consumers';
 
 const Container = styled.div`
 height: calc(100% - 50px);
@@ -40,11 +41,17 @@ const ClothingStore = (props: Props) => {
     const [recommended, setRecommended] = useState<any>([])
     const filter = useAppSelector((state) => state.userServices.filter)
 
-    console.log(filter);
 
     useEffect(() => {
         setfilterClothes(clothes.filter((item: ItemType) => item.type === choice))
     }, [clothes])
+
+    const asyncLocalStorage = async (saves: any) => {
+        await localStorage.clear();
+        await localStorage.setItem("savedSelection", JSON.stringify(saves));
+    }
+
+
 
     useEffect(() => {
 
@@ -71,7 +78,6 @@ const ClothingStore = (props: Props) => {
             const create = Date()
             dispatch(saveColletion({ items: tempSaves, date: create, total: totalTime }))
             dispatch(resetTempSaves([]))
-
         }
         setRecommended([])
 
@@ -89,6 +95,9 @@ const ClothingStore = (props: Props) => {
         }
 
     }, [filterClothes])
+    useEffect(() => {
+        asyncLocalStorage(saves)
+    }, [saves])
 
 
     return (

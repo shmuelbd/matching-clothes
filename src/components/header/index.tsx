@@ -6,6 +6,7 @@ import CheckroomIcon from '@mui/icons-material/Checkroom';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
 import { fetchClothes } from "../../redux/slices/clothes";
+import { loadColletion } from "../../redux/slices/userServices";
 
 const Container = styled.div`
 display: flex;
@@ -23,6 +24,15 @@ const Header = (props: Props) => {
     const clothes = useAppSelector((state) => state.clothes.data)
 
     useEffect(() => {
+        const data: any = localStorage.getItem("savedSelection")
+
+
+
+        if (data != null) {
+            dispatch(loadColletion(JSON.parse(data)))
+        }
+
+        // console.log(saved);
         if (clothes.length < 1)
             dispatch(fetchClothes())
     }, [])

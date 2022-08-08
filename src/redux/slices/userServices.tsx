@@ -28,6 +28,9 @@ export const userSlice = createSlice({
         saveColletion: (state: any, action: PayloadAction<any>) => {
             state.savedSelection.push(action.payload)
         },
+        loadColletion: (state: any, action: PayloadAction<any>) => {
+            state.savedSelection = action.payload
+        },
         setTempSaves: (state: any, action: PayloadAction<any>) => {
             state.tempsaves.push(action.payload)
 
@@ -54,7 +57,7 @@ export const userSlice = createSlice({
     },
 })
 
-export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves, deleteItem, setSize, setFilter } = userSlice.actions
+export const { setChoice, changeSteps, saveColletion, setTempSaves, resetTempSaves, deleteItem, setSize, setFilter, loadColletion } = userSlice.actions
 
 export default userSlice.reducer
 
