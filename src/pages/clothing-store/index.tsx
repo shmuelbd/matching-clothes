@@ -10,7 +10,6 @@ import { changeSteps, resetTempSaves, saveColletion, setChoice, setTempSaves } f
 const Container = styled.div`
 height: calc(100% - 50px);
 width: 100%;
-/* background-color: #e9e9e9; */
 overflow-y: scroll;
 `;
 
@@ -46,18 +45,10 @@ const ClothingStore = (props: Props) => {
         return allsavesitems
     }
 
-
-
-
-
-
-
     useEffect(() => {
         setfilterClothes(clothes.filter((item: ItemType) => item.type === choice))
 
-
     }, [clothes])
-
 
     let types = ["shoes", "shirt", "pants"]
     if (choice === "shirt")
@@ -65,8 +56,6 @@ const ClothingStore = (props: Props) => {
 
     if (choice === "pants")
         types = ["pants", "shirt", "shoes"]
-
-
 
     useEffect(() => {
 
@@ -92,7 +81,6 @@ const ClothingStore = (props: Props) => {
         }
 
     }, [step])
-
 
     return (
         <Container>

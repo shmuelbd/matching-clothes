@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteItem } from '../../../redux/slices/userServices';
+import Moment from 'react-moment';
 
 const Container = styled.div`
 display: flex;
@@ -70,15 +71,22 @@ const Box = (props: Props) => {
     const dispatch = useAppDispatch()
 
 
+
     return (
         <Container>
             <Title>    רשימה מס': {props.index + 1}</Title>
+            <ContainerSubBox>
+                <P>תאריך: </P>{" "}
+                <SubTitle>{"נוצר ב: : "}</SubTitle>  {<Moment format="YYYY/MM/DD" date={props.item.date} />}
+                <SubTitle>{"פרק זמן: "}</SubTitle>{props.item.total}
 
+            </ContainerSubBox>
             {
                 itemDetails.map((item: any, index: number) => (
                     <Item item={item} key={index} />
                 ))
             }
+
             <BoxButton>
                 <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => dispatch(deleteItem(props.index))}>
                     מחיקה
@@ -105,6 +113,7 @@ const translate = (item: string) => {
 }
 
 const Item = (props: PropsItem) => {
+
     return (
         <ContainerSubBox>
             <P>{translate(props.item.type)}</P>{" "}
