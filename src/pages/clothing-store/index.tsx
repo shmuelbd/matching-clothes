@@ -55,6 +55,7 @@ const ClothingStore = (props: Props) => {
 
     useEffect(() => {
 
+
         if (step == 1) {
             let size: any = clothes.filter((item: any) => item.id == tempSaves[0])
             dispatch(setSize({ choice: choice, size: setSizes({ type: choice, size: size[0].size }) }))

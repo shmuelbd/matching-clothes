@@ -77,7 +77,7 @@ const Box = (props: Props) => {
             <Title>    רשימה מס': {props.index + 1}</Title>
             <ContainerSubBox>
                 <P>תאריך: </P>{" "}
-                <SubTitle>{"נוצר ב: : "}</SubTitle>  {<Moment format="YYYY/MM/DD" date={props.item.date} />}
+                <SubTitle>{"נוצר ב: "}</SubTitle>  {<Moment format="YYYY/MM/DD" date={props.item.date} />}
                 <SubTitle>{"פרק זמן: "}</SubTitle>{props.item.total}
 
             </ContainerSubBox>
@@ -116,9 +116,9 @@ const Item = (props: PropsItem) => {
 
     return (
         <ContainerSubBox>
-            <P>{translate(props.item.type)}</P>{" "}
-            <SubTitle>{"מותג: "}</SubTitle>  {props.item.brand}
-            <SubTitle>{"מידה: "}</SubTitle>{props.item.size}
+            <P>{translate(props.item.type)}</P>{"  "}
+            <SubTitle>{"מותג:  "}</SubTitle>  {props.item.brand}
+            <SubTitle>{"מידה:  "}</SubTitle>{props.item.size}
             <SubTitle>{"צבע: "}</SubTitle>{props.item.color}
 
 
