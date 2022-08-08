@@ -9,7 +9,7 @@ const RouterComponent = (props: Props) => {
 
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/matching-clothes" element={<Home />} />
             <Route path="/clothing-store" element={<ClothingStore />} />
             <Route path="/saved-selection" element={<SavedSelection />} />
         </Routes>
