@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/matching-clothes/static/css/main.44df2798.css",
-    "main.js": "/matching-clothes/static/js/main.280a5399.js",
+    "main.js": "/matching-clothes/static/js/main.c347a71f.js",
     "index.html": "/matching-clothes/index.html",
     "main.44df2798.css.map": "/matching-clothes/static/css/main.44df2798.css.map",
-    "main.280a5399.js.map": "/matching-clothes/static/js/main.280a5399.js.map"
+    "main.c347a71f.js.map": "/matching-clothes/static/js/main.c347a71f.js.map"
   },
   "entrypoints": [
     "static/css/main.44df2798.css",
-    "static/js/main.280a5399.js"
+    "static/js/main.c347a71f.js"
   ]
 }
